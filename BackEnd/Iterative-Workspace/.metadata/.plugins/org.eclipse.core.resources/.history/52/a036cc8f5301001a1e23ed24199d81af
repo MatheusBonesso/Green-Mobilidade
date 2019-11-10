@@ -1,0 +1,3 @@
+INSERT INTO VEICULOS (ano, marca, cor, data_hora_ultima_corrida) VALUES (2017, 'yamaha','verde', '2019-05-05 20:00:00');
+
+INSERT INTO CONDUTOR (email, veiculo_id) VALUES ('matheusbonesso@email.com', 1);

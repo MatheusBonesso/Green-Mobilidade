@@ -1,0 +1,24 @@
+INSERT INTO VEICULOS (ano,codigo, marca, cor,modelo, data_hora_ultima_corrida,
+velocidade_maxima, quilometragem, valor_minuto, dias_utilizacao) 
+
+VALUES (2017,'100100', 'yamaha','verde','Patinete','2019-05-05 20:00:00',
+10.0,20.0, 0.48,0);
+
+INSERT INTO VEICULOS (ano,codigo, marca, cor,modelo, data_hora_ultima_corrida,
+velocidade_maxima, quilometragem, valor_minuto, dias_utilizacao) 
+
+VALUES (2018,'100101', 'yamaha','azul','Patinete','2019-05-05 20:00:00',
+10.0,20.0, 0.72,1);
+
+INSERT INTO VEICULOS (ano,codigo, marca, cor,modelo, data_hora_ultima_corrida,
+velocidade_maxima, quilometragem, valor_minuto, dias_utilizacao) 
+
+VALUES (2016,'200100', 'yamaha','azul','Bicicleta','2019-05-05 20:00:00',
+10.0,20.0, 0.63,1);
+
+INSERT INTO VEICULOS (ano,codigo, marca, cor,modelo, data_hora_ultima_corrida,
+velocidade_maxima, quilometragem, valor_minuto, dias_utilizacao) 
+
+VALUES (2018,'200101', 'yamaha','azul','Bicicleta','2019-05-05 20:00:00',
+10.0,20.0, 1.0,1);
+

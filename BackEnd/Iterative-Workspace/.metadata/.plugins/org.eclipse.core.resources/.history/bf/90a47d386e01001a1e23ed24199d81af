@@ -1,0 +1,53 @@
+package br.com.iterative.green.controllers.form;
+
+import br.com.iterative.green.models.Corridas;
+import br.com.iterative.green.models.Veiculos;
+import br.com.iterative.green.repository.VeiculosRepository;
+
+public class CorridasForm {
+
+	private Long veiculoId;
+	private String emailCondutor;
+	private String horaFim;
+	private Long codigo;
+
+
+	public Long getVeiculoId() {
+		return veiculoId;
+	}
+
+	public void setVeiculoId(Long veiculoId) {
+		this.veiculoId = veiculoId;
+	}
+
+	public String getEmailCondutor() {
+		return emailCondutor;
+	}
+
+	public void setEmailCondutor(String emailCondutor) {
+		this.emailCondutor = emailCondutor;
+	}
+
+	public String getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(String horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+	public Corridas converter(VeiculosRepository repository) {
+		System.out.println("Codigo: "+codigo);
+		Veiculos veiculoId = repository.findByCodigo(codigo);
+		return new Corridas(veiculoId, emailCondutor, horaFim);
+	}
+
+}

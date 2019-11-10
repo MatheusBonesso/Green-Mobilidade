@@ -1,0 +1,29 @@
+package br.com.iterative.green.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.iterative.green.controllers.dto.VeiculosDTO;
+import br.com.iterative.green.models.Veiculos;
+import br.com.iterative.green.repository.VeiculosRepository;
+
+@RestController
+public class GreenController {
+	@Autowired VeiculosRepository veiculosRepository;
+	
+	
+	@RequestMapping("/veiculos")
+	public List<VeiculosDTO> listar(){
+		List<Veiculos> veiculos = veiculosRepository.findAll();
+		
+		return VeiculosDTO.converter(veiculos);
+	}
+}
+
+
+
+
+

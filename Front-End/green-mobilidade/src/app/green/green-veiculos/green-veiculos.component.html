@@ -1,0 +1,30 @@
+<ul class="list-unstyled row">
+    <li *ngFor="let veiculo of veiculos" class="col-6">
+       <img class="img-fluid w-50 p-3" [src]="veiculo.urlImagem">
+       <table class="table table-striped">
+            <thead>
+              <tr>
+                <th colspan="2" scope="col" class="tabela">Ficha Técnica</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+               <td colspan="2">Ano fabricação:</td>
+               <td>{{veiculo.ano}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Marca:</td>
+                <td>{{veiculo.marca}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Valor:</td>
+                <td>R${{veiculo.valorMinuto}}/minuto</td>
+                
+              </tr>
+            </tbody>
+          </table>
+          <button [routerLink] = "['/alugar', veiculo.id]" type="button" class="btn btn-success">Alugar!</button>
+    </li>
+
+</ul>

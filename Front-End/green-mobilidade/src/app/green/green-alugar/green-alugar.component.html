@@ -1,0 +1,47 @@
+<div *ngIf="(veiculoAlugado ) as veiculo">
+<ul class="list-unstyled row" >
+    <li class="col-6">
+        
+       <table class="table table-striped">
+            <thead>
+              <tr>
+                <th colspan="2" scope="col" class="tabela">Ficha Técnica</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+               <td colspan="2">Ano fabricação:</td>
+               <td>{{veiculo.ano}}</td>
+              </tr>
+              <tr>
+                  <td colspan="2">Valor:</td>
+                  <td>R${{veiculo.valorMinuto}}/Minuto</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Marca:</td>
+                    <td>{{veiculo.marca}}</td>
+                </tr>
+            <tr>
+                <td colspan="2">Ano fabricação:</td>
+                <td>{{veiculo.ano}}</td>
+            </tr>
+          
+            </tbody>
+          </table>
+        </li>
+        <img [src]="veiculo.urlImagem" class="float-right w-25 p-3"/>  
+    </ul>
+        <form #f="ngForm" [formGroup] = "form" (ngSubmit)="onSubmit(f)">
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validation01">Coloque seu e-mail para alugar</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="email@example" email required>
+              </div>
+          </div>
+          <button [disabled]="!f.valid" class="btn btn-primary" (click)= "onSubmit()" type="submit">Alugar!</button>
+          <button class="btn btn-light" (click)= "onCancel()" type="submit">Cancelar</button>
+      </form>    
+    </div> 
+    
+   

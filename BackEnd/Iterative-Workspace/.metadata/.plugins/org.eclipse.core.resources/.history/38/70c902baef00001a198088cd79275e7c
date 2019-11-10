@@ -1,0 +1,29 @@
+package br.com.iterative.green.controllers.dto;
+
+import java.time.LocalDateTime;
+
+public class VeiculosDTO {
+	
+	private Long id;
+	private int ano;
+	private String marca;
+	private String cor;
+	private LocalDateTime dataHoraDesbloqueio;
+	
+	public Long getId() {
+		return id;
+	}
+	public int getAno() {
+		return ano;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public String getCor() {
+		return cor;
+	}
+	public LocalDateTime getDataHoraDesbloqueio() {
+		return dataHoraDesbloqueio;
+	}
+	
+}

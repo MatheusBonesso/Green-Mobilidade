@@ -1,0 +1,5 @@
+package br.com.iterative.green.controller.dto;
+
+public class VeiculosDTO {
+
+}

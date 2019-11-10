@@ -1,0 +1,9 @@
+package br.com.iterative.green.models;
+
+import java.time.LocalDateTime;
+
+public class TravaEletronica {
+	private Long id;
+	private LocalDateTime dataHoraDesbloqueio;
+	
+}

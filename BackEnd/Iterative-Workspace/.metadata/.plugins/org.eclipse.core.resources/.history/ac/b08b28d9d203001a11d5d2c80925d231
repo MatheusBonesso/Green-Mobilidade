@@ -1,0 +1,25 @@
+package br.com.iterative.green.controllers.form;
+
+import java.time.LocalDateTime;
+
+public class CorridaAtualizarForm {
+	private LocalDateTime horaFim;
+	private boolean ativa;
+
+	public LocalDateTime getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(LocalDateTime horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public boolean isAtiva() {
+		return ativa;
+	}
+
+	public void setAtiva(boolean ativa) {
+		this.ativa = ativa;
+	}
+
+}

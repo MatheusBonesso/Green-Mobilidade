@@ -1,0 +1,5 @@
+INSERT INTO VEICULOS (ano, marca, cor,modelo, data_hora_ultima_corrida,
+velocidade_maxima, quilometragem, valor_minuto, dias_utilizacao) 
+
+VALUES (2017, 'yamaha','verde','Patinete','2019-05-05 20:00:00',
+10.0,20.0, 0.48,1);

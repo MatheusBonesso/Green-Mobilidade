@@ -1,0 +1,60 @@
+package br.com.iterative.green.controllers.dto;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import br.com.iterative.green.models.Corridas;
+
+public class CorridasDTO {
+	private String emailCondutor;
+	private LocalDateTime horaInicio = LocalDateTime.now();
+	private String horaFim;
+	private boolean ativa;
+	
+	public CorridasDTO(Corridas corridas) {
+		this.emailCondutor = corridas.getEmailCondutor();
+		this.ativa = corridas.isAtiva();
+		this.horaFim = corridas.getHoraFim();
+		
+	}
+
+	public String getEmailCondutor() {
+		return emailCondutor;
+	}
+
+	public void setEmailCondutor(String emailCondutor) {
+		this.emailCondutor = emailCondutor;
+	}
+
+	public LocalDateTime getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(LocalDateTime horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public String getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(String horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public boolean isAtiva() {
+		return ativa;
+	}
+
+	public void setAtiva(boolean ativa) {
+		this.ativa = ativa;
+	}
+
+	public static List<CorridasDTO> converter(List<Corridas> corridas) {
+		
+		return corridas.stream().map(CorridasDTO::new).collect(Collectors.toList());
+		
+	}
+
+}

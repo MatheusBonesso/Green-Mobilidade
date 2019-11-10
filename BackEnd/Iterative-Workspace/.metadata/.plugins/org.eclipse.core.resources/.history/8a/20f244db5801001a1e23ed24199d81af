@@ -1,0 +1,50 @@
+package br.com.iterative.green.controllers.dto;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import br.com.iterative.green.models.Veiculos;
+
+public class VeiculosDTO {
+
+	private Long id;
+	private int ano;
+	private String marca;
+	private String cor;
+	private LocalDateTime dataHoraUltimaCorrida;
+
+	public VeiculosDTO(Veiculos veiculo) {
+		this.id = veiculo.getId();
+		this.ano = veiculo.getAno();
+		this.cor = veiculo.getCor();
+		this.marca = veiculo.getMarca();
+		this.dataHoraUltimaCorrida = veiculo.getDataHoraUltimaCorrida();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public LocalDateTime getDataHoraUltimaCorrida() {
+		return dataHoraUltimaCorrida;
+	}
+
+	public static List<VeiculosDTO> converter(List<Veiculos> veiculos) {
+		return veiculos.stream().map(VeiculosDTO::new).collect(Collectors.toList());
+
+	}
+
+}

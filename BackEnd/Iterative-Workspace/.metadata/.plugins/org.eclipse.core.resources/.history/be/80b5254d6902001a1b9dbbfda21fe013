@@ -1,0 +1,56 @@
+package br.com.iterative.green.controllers;
+
+import java.net.URI;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import br.com.iterative.green.controllers.dto.CorridasDTO;
+import br.com.iterative.green.controllers.dto.VeiculosDTO;
+import br.com.iterative.green.controllers.form.CorridasForm;
+import br.com.iterative.green.models.Corridas;
+import br.com.iterative.green.models.Veiculos;
+import br.com.iterative.green.repository.CorridasRepository;
+import br.com.iterative.green.repository.VeiculosRepository;
+
+@RestController
+public class GreenController {
+	@Autowired VeiculosRepository veiculosRepository;
+	
+	@Autowired CorridasRepository corridasRepository;
+	
+	@RequestMapping(value = "/veiculos", method = RequestMethod.GET)
+	public List<VeiculosDTO> listarVeiculos(){
+		List<Veiculos> veiculos = veiculosRepository.findAll();
+		
+		return VeiculosDTO.converter(veiculos);
+	}
+	@CrossOrigin
+	@RequestMapping(value ="/corridas", method = RequestMethod.POST)
+	public ResponseEntity<VeiculosDTO> cadastrar(@RequestBody CorridasForm form, UriComponentsBuilder uribuBuilder){
+		Corridas corrida = form.converter(veiculosRepository);
+		corridasRepository.save(corrida);
+		
+		URI uri = uribuBuilder.path("/corridas/{id}").buildAndExpand(corrida.getId()).toUri();
+		return ResponseEntity.created(uri).body(new VeiculosDTO(corrida.getVeiculo()));
+	}
+	@RequestMapping(value = "/corridas", method = RequestMethod.GET)
+	public List<CorridasDTO> listarCorridas(){
+		List<Corridas> corridas = corridasRepository.findAll();
+		
+		return CorridasDTO.converter(corridas);
+	}
+	
+}
+
+
+
+
+

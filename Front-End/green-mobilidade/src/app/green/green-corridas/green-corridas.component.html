@@ -1,0 +1,17 @@
+<ul class="list-unstyled row"*ngFor="let corrida of corridas ; let corridaSelecionada = index" >
+  <li *ngIf="corrida.ativa"  class="col-6">
+    <img class="img-fluid w-75 p-3" [src] = "corrida.veiculo.urlImagem">
+     <table class="table table-striped">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+             <td colspan="2">Início da corrida:</td>
+             <td>{{corrida.horaInicioFormatada}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" (click)="finalizarCorrida(corridaSelecionada)">Finalizar Corrida</button>
+  </li>
+
+</ul>

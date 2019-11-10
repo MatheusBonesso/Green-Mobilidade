@@ -1,0 +1,12 @@
+package br.com.iterative.green.controllers.dto;
+
+import java.time.LocalDateTime;
+
+public class CorridasDTO {
+	private String emailCondutor;
+	private LocalDateTime horaInicio = LocalDateTime.now();
+	private String horaFim;
+	private boolean ativa;
+	
+	
+}
