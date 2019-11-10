@@ -10,8 +10,7 @@ as dependências são controladas pelo Maven e são as seguintes: Spring Web, De
 Está sendo utilizado JPA para comunicação com um banco de dados em memória, H2, que está inicialmente populado com os veículos, um arquivo data.sql
 na pasta Resources que realiza a população do banco. 
 
-Para o Front-end foi utilizado Angular2+ com BootStrap 4, as rotas da aplicação podem ser acessadas pelo menu superior, mas basicamente há
-/veículos para listar todos os veículos disponíveis, /corridas para listar todas as corridas ativas e onde pode ser realizado o cancelamento
+Para o Front-end foi utilizado Angular2+ com BootStrap 4, as rotas da aplicação podem ser acessadas pelo menu superior, para iniciar o projeto corretamente é necessária utilizar o comando npm install dentro da pasta do projeto, para o projeto não ficar pesado e não ter problemas com antivirus a pasta node_modules foi removida, mas basicamente há /veículos para listar todos os veículos disponíveis, /corridas para listar todas as corridas ativas e onde pode ser realizado o cancelamento
 da corrida, /financeiro que mostra o resumo financeiro de todos os veículos e /alugar que pede e-mail para alugar um veículo.
 
 A aplicação está simples e consumindo todos os tipos de requisições(GET, PUT, POST, delete não desculpa) sei que precisa de muitas melhorias 
