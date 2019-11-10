@@ -21,6 +21,7 @@ public class VeiculosDTO {
 	private Double valorTotal;
 	private Double quilometragem;
 	private Long codigo;
+	private Double velocidadeMaxima;
 
 	public VeiculosDTO(Veiculos veiculo) {
 		this.id = veiculo.getId();
@@ -35,6 +36,7 @@ public class VeiculosDTO {
 		this.valorTotal = veiculo.getValorTotal();
 		this.codigo = veiculo.getCodigo();
 		this.quilometragem = veiculo.getQuilometragem();
+		this.velocidadeMaxima = veiculo.getVelocidadeMaxima();
 	}
 
 	public Long getId() {
@@ -85,7 +87,10 @@ public class VeiculosDTO {
 	public Long getCodigo() {
 		return codigo;
 	}
-
+	
+	public Double getVelocidadeMaxima(){
+		return velocidadeMaxima;
+	}
 	public static List<VeiculosDTO> converter(List<Veiculos> veiculos) {
 		return veiculos.stream().map(VeiculosDTO::new).collect(Collectors.toList());
 
