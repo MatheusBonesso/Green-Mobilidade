@@ -1,0 +1,20 @@
+--
+-- Quais os alugueis de determinado veículo?
+--
+SELECT * FROM ALUGUEL WHERE id_veiculo = 123;
+
+--
+-- Quais os alugueis de determinado condutor?
+--
+SELECT * FROM ALUGUEL WHERE id_condutor = 123;
+
+--
+-- Quais os alugueis de determinado condutor?
+--
+SELECT * 
+FROM ALUGUEL 
+INNER JOIN FINANCEIRO ON ALUGEL.ID_FINANCEIRO = FINANCEIRO.ID
+--WHERE ALUGEL.ID_CONDUTOR = 123;
+
+
+

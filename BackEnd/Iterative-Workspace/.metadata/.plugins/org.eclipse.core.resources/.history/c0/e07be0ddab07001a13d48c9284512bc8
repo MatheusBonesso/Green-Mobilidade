@@ -1,0 +1,64 @@
+package br.com.iterative.green.controllers.form;
+
+import java.time.LocalDateTime;
+
+import br.com.iterative.green.models.Aluguel;
+import br.com.iterative.green.models.Veiculos;
+import br.com.iterative.green.repository.VeiculosRepository;
+
+public class CorridasForm {
+
+	private Long veiculoId;
+	private String emailCondutor;
+	private LocalDateTime horaFim;
+	private Long id;
+	private boolean ativa;
+
+
+	public Long getVeiculoId() {
+		return veiculoId;
+	}
+
+	public void setVeiculoId(Long veiculoId) {
+		this.veiculoId = veiculoId;
+	}
+
+	public String getEmailCondutor() {
+		return emailCondutor;
+	}
+
+	public void setEmailCondutor(String emailCondutor) {
+		this.emailCondutor = emailCondutor;
+	}
+
+	public LocalDateTime getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(LocalDateTime horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public Long getCodigo() {
+		return id;
+	}
+
+	public void setCodigo(Long id) {
+		this.id = id;
+	}
+
+	public boolean isAtiva() {
+		return ativa;
+	}
+
+	public void setAtiva(boolean ativa) {
+		this.ativa = ativa;
+	}
+
+	public Aluguel converter(Long id, VeiculosRepository repository) {
+		
+		Veiculos veiculo = repository.getOne(id);
+		return new Aluguel(veiculo, emailCondutor, horaFim, ativa);
+	}
+
+}

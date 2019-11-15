@@ -27,7 +27,7 @@ const appRoute: Routes = [
     }
   },
   {
-    path:'corridas', 
+    path:'aluguel', 
     component:GreenCorridasComponent,
     resolve:{
         corridas:CorridaResolverGuard

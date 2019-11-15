@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Veiculos } from 'src/app/models/veiculos';
 import { CorridasService } from './green-corridas.service';
-import { Subscription } from 'rxjs';
 import { Corrida } from 'src/app/models/corrida';
-import { ActivatedRoute, Router } from '@angular/router';
-import { GreenVeiculosComponent } from '../green-veiculos/green-veiculos.component';
+
 @Component({
   selector: 'green-corridas',
   templateUrl: './green-corridas.component.html',
@@ -34,7 +33,7 @@ export class GreenCorridasComponent implements OnInit {
     event.preventDefault();
     let alerta = confirm("Deseja realmente finalizar a corrida?")
     let veiculo: Veiculos = this.corridas[corridaSelecionada].veiculo;
-    this.calcularValorCorrida(corridaSelecionada, veiculo);
+    
     
     if(alerta){
       this.corridas[corridaSelecionada].horaFim = new Date();
@@ -50,15 +49,4 @@ export class GreenCorridasComponent implements OnInit {
     }
   }
 
-  calcularValorCorrida(corridaSelecionada: string, veiculo: Veiculos){
-    var fim = new Date();
-    var inicio = new Date (this.corridas[corridaSelecionada].horaInicio)
-     
-    var horas = (inicio.getHours() - fim.getHours()) * 60;
-    var minutos = (inicio.getMinutes() - fim.getMinutes());
-    if(minutos < 0){
-      minutos *-1
-    }
-    veiculo.valorTotal = horas + minutos;
-  }
 }

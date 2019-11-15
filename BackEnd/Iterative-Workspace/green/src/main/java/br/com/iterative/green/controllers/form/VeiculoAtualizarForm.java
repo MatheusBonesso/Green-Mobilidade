@@ -2,14 +2,15 @@ package br.com.iterative.green.controllers.form;
 
 import java.time.LocalDateTime;
 
+import br.com.iterative.green.models.Financeiro;
 import br.com.iterative.green.models.Veiculos;
 import br.com.iterative.green.repository.VeiculosRepository;
 
 public class VeiculoAtualizarForm {
 	private Long id;
-	private Double valorTotal;
 	private boolean emUso;
 	private LocalDateTime dataHoraUltimaCorrida;
+	private Financeiro financeiro;
 
 	public Long getId() {
 		return id;
@@ -17,14 +18,6 @@ public class VeiculoAtualizarForm {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Double getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
 	}
 
 	public boolean isEmUso() {
@@ -43,12 +36,21 @@ public class VeiculoAtualizarForm {
 		this.dataHoraUltimaCorrida = dataHoraUltimaCorrida;
 	}
 
+	public Financeiro getFinanceiro() {
+		return financeiro;
+	}
+
+	public void setFinanceiro(Financeiro financeiro) {
+		this.financeiro = financeiro;
+	}
+
 	public Veiculos atualizar(Long idVeiculo, VeiculosRepository veiculosRepository) {
 		Veiculos veiculo = veiculosRepository.getOne(idVeiculo);
 		veiculo.setDataHoraUltimaCorrida(this.dataHoraUltimaCorrida);
 		veiculo.setEmUso(this.emUso);
-		veiculo.setValorTotal(this.valorTotal + veiculo.getValorTotal());
-		System.out.println(this.dataHoraUltimaCorrida);
+
+		veiculo.getFinanceiro().setValorTotal(this.financeiro.getValorTotal());
+
 		return veiculo;
 	}
 

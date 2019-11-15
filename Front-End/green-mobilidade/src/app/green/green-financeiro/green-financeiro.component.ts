@@ -15,6 +15,7 @@ export class GreenFinanceiroComponent implements OnInit {
 
   ngOnInit() {
     this.veiculos = this.route.snapshot.data['veiculo'];
+    console.log(this.veiculos)
   }
 
 }

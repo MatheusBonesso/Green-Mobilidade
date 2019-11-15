@@ -1,0 +1,53 @@
+package br.com.iterative.green.models;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+public class Financeiro {
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@OneToOne
+	private Veiculos veiculos;
+	
+	private Double valorTotal;
+	
+	private Double valorMinuto;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Veiculos getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(Veiculos veiculos) {
+		this.veiculos = veiculos;
+	}
+
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public Double getValorMinuto() {
+		return valorMinuto;
+	}
+
+	public void setValorMinuto(Double valorMinuto) {
+		this.valorMinuto = valorMinuto;
+	}
+	
+	
+	
+}

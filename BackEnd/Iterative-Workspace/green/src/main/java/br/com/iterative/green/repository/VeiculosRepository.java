@@ -6,7 +6,7 @@ import br.com.iterative.green.models.Veiculos;
 
 public interface VeiculosRepository extends JpaRepository<Veiculos, Long>{
 
-	Veiculos findByCodigo(Long codigo);
+	Veiculos findByCodigoEtiqueta(Long codigo);
 
 	
 }

@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.iterative.green.models.DiasDeUtilizacao;
+import br.com.iterative.green.models.Financeiro;
 import br.com.iterative.green.models.Veiculos;
 
 public class VeiculosDTO {
 
 	private Long id;
+	private Financeiro financeiro;
 	private int ano;
 	private String marca;
 	private String cor;
 	private LocalDateTime dataHoraUltimaCorrida;
 	private DiasDeUtilizacao diasUtilizacao;
 	private String urlImagem;
-	private Double valorMinuto;
 	private boolean emUso;
-	private Double valorTotal;
 	private Double quilometragem;
 	private Long codigo;
 	private Double velocidadeMaxima;
@@ -31,10 +31,10 @@ public class VeiculosDTO {
 		this.dataHoraUltimaCorrida = veiculo.getDataHoraUltimaCorrida();
 		this.diasUtilizacao = veiculo.getDiasUtilizacao();
 		this.urlImagem = veiculo.getUrlImagem();
-		this.valorMinuto = veiculo.getValorMinuto();
+		this.financeiro = veiculo.getFinanceiro();
 		this.emUso = veiculo.isEmUso();
-		this.valorTotal = veiculo.getValorTotal();
-		this.codigo = veiculo.getCodigo();
+		
+		this.codigo = veiculo.getCodigoEtiqueta();
 		this.quilometragem = veiculo.getQuilometragem();
 		this.velocidadeMaxima = veiculo.getVelocidadeMaxima();
 	}
@@ -68,17 +68,10 @@ public class VeiculosDTO {
 		return urlImagem;
 	}
 
-	public Double getValorMinuto() {
-		return valorMinuto;
-	}
-
 	public boolean isEmUso() {
 		return emUso;
 	}
 
-	public Double getValorTotal() {
-		return valorTotal;
-	}
 
 	public Double getQuilometragem() {
 		return quilometragem;
@@ -87,10 +80,16 @@ public class VeiculosDTO {
 	public Long getCodigo() {
 		return codigo;
 	}
-	
-	public Double getVelocidadeMaxima(){
+
+	public Double getVelocidadeMaxima() {
 		return velocidadeMaxima;
 	}
+
+	
+	public Financeiro getFinanceiro() {
+		return financeiro;
+	}
+
 	public static List<VeiculosDTO> converter(List<Veiculos> veiculos) {
 		return veiculos.stream().map(VeiculosDTO::new).collect(Collectors.toList());
 

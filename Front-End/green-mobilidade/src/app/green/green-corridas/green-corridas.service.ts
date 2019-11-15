@@ -8,7 +8,7 @@ import { Corrida } from 'src/app/models/corrida';
 })
 export class CorridasService {
   
-  private readonly API = 'http://localhost:8080/corridas/'
+  private readonly API = 'http://localhost:8080/aluguel/'
   private readonly API_VEICULO = 'http://localhost:8080/veiculos/'
 
     constructor(private http: HttpClient){}

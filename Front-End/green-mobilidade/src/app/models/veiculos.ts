@@ -1,3 +1,5 @@
+import { Financeiro } from './financeiro';
+
 export interface Veiculos{
     id: string;
     ano: number;
@@ -6,13 +8,12 @@ export interface Veiculos{
     dataHoraUltimaCorrida: Date;
     diasUtilizacao: string;
     urlImagem: string;
-    valorMinuto: number;
     dataUltimaUtilizacao: string;
     quilometragem: number;
     codigo: string;
     horaFim: Date;
     emailCondutor: string;
     ativa: boolean;
-    valorTotal: number;
     dataFormatada: string;
+    financeiro: Financeiro;
 }

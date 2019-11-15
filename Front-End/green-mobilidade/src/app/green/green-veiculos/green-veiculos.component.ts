@@ -21,16 +21,16 @@ export class GreenVeiculosComponent implements OnInit{
   ngOnInit() {
  
     this.veiculos = this.route.snapshot.data['veiculo'];
+    console.log(this.veiculos);
     this.formatarDados();
   
   }
   formatarDados(){
       var i = 0;
       this.veiculos.forEach(dado =>{
-      let data = new Date(dado.dataHoraUltimaCorrida)
-      
-        
-      if(dado.diasUtilizacao == "DIAS_DA_SEMANA" && (data.getDay()==0 || data.getDay()== 7) ){
+      let data = new Date().getDay();
+     
+      if(dado.diasUtilizacao == "FIM_DE_SEMANA" && !(data == 0 || data == 6 )){
         this.veiculos.splice(i,1);
       }
       i++;

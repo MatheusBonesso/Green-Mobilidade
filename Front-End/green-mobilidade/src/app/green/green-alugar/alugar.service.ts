@@ -8,7 +8,7 @@ import { Veiculos } from 'src/app/models/veiculos';
     providedIn: 'root'
 })
 export class AlugarService{
-    private readonly API = 'http://localhost:8080/alugar/'
+    private readonly API = 'http://localhost:8080/aluguel/'
 
     constructor(private http: HttpClient){}
 
@@ -18,7 +18,7 @@ export class AlugarService{
 
     criarCorrida(veiculoAlugado:Veiculos){
 
-        return this.http.post(this.API, veiculoAlugado);
+        return this.http.post(this.API + veiculoAlugado.id, veiculoAlugado);
     }
 
 }

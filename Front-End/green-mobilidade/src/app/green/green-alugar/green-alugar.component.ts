@@ -29,6 +29,7 @@ export class GreenAlugarComponent implements OnInit{
   ngOnInit() {
      
     this.veiculoAlugado = this.route.snapshot.data['alugar'];
+    console.log(this.veiculoAlugado)
     this.form = this.formBuilder.group({
       email:[null]
     })
@@ -40,7 +41,7 @@ export class GreenAlugarComponent implements OnInit{
     this.veiculoAlugado.emailCondutor = this.form.value['email'];
     this.veiculoAlugado.ativa = true;
     this.service.criarCorrida(this.veiculoAlugado).subscribe(
-      ()=> this.router.navigate(['corridas'])
+      ()=> this.router.navigate(['aluguel'])
     )
   }
 

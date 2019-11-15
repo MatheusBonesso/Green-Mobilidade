@@ -1,0 +1,6 @@
+--
+-- Quais os alugueis de determinado veículo?
+--
+SELECT * FROM ALUGUEL WHERE id_veiculo = 123;
+
+

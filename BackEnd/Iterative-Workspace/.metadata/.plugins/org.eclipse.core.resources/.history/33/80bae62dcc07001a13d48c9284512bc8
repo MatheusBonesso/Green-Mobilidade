@@ -1,0 +1,12 @@
+package br.com.iterative.green.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.iterative.green.models.Veiculos;
+
+public interface VeiculosRepository extends JpaRepository<Veiculos, Long>{
+
+	Veiculos findByCodigo(Long codigo);
+
+	
+}

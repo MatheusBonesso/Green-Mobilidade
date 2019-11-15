@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 public class Veiculos {
@@ -13,23 +16,24 @@ public class Veiculos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int ano;
-	private Long codigo;
 	
+	private int ano;
+	
+	@UniqueElements
+	private Long codigoEtiqueta;
+
+	@OneToOne
+	private Financeiro financeiro;
+
+	private DiasDeUtilizacao diasUtilizacao;
 	private String marca;
 	private String cor;
 	private String modelo;
 	private LocalDateTime dataHoraUltimaCorrida;
 	private Double velocidadeMaxima;
 	private Double quilometragem;
-	private DiasDeUtilizacao diasUtilizacao;
-	private Double valorMinuto;
 	private String urlImagem;
 	private boolean emUso;
-	private Double valorTotal;
-	
-	
-	
 
 	public Long getId() {
 		return id;
@@ -103,20 +107,12 @@ public class Veiculos {
 		this.diasUtilizacao = diasUtilizacao;
 	}
 
-	public Double getValorMinuto() {
-		return valorMinuto;
+	public Long getCodigoEtiqueta() {
+		return codigoEtiqueta;
 	}
 
-	public void setValorMinuto(Double valorMinuto) {
-		this.valorMinuto = valorMinuto;
-	}
-	
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setCodigoEtiqueta(Long codigoEtiqueta) {
+		this.codigoEtiqueta = codigoEtiqueta;
 	}
 
 	public String getUrlImagem() {
@@ -135,13 +131,12 @@ public class Veiculos {
 		this.emUso = emUso;
 	}
 
-	public Double getValorTotal() {
-		return valorTotal;
+	public Financeiro getFinanceiro() {
+		return financeiro;
 	}
 
-	public void setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setFinanceiro(Financeiro valores) {
+		this.financeiro = valores;
 	}
-
 
 }

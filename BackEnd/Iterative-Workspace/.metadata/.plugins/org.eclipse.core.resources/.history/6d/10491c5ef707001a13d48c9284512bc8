@@ -1,0 +1,40 @@
+package br.com.iterative.green.controllers.form;
+
+import java.time.LocalDateTime;
+
+import br.com.iterative.green.models.Aluguel;
+import br.com.iterative.green.repository.AluguelRepository;
+import br.com.iterative.green.repository.FinanceiroRepository;
+
+public class AluguelAtualizarForm {
+	private LocalDateTime horaFim;
+	private boolean ativa;
+
+	public LocalDateTime getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(LocalDateTime horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public boolean isAtiva() {
+		return ativa;
+	}
+
+	public void setAtiva(boolean ativa) {
+		this.ativa = ativa;
+	}
+
+	public Aluguel atualizar(Long id, AluguelRepository aluguelRepository, FinanceiroRepository financeiroRepository) {
+		Aluguel aluguel = aluguelRepository.getOne(id);
+		aluguel.setAtiva(this.ativa);
+		aluguel.setHoraFim(this.horaFim);
+		System.out.println(aluguel.getFinanceiro().getId());
+		/*Financeiro financeiro = financeiroRepository.
+		corrida.getFinanceiro().setTotalMinutos(20.0);*/
+
+		return aluguel;
+	}
+
+}

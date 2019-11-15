@@ -15,21 +15,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.iterative.green.controllers.dto.CorridasDTO;
+import br.com.iterative.green.controllers.dto.AluguelDTO;
 import br.com.iterative.green.controllers.dto.VeiculosDTO;
-import br.com.iterative.green.controllers.form.CorridaAtualizarForm;
-import br.com.iterative.green.controllers.form.CorridasForm;
+import br.com.iterative.green.controllers.form.AluguelAtualizarForm;
+import br.com.iterative.green.controllers.form.AluguelForm;
 import br.com.iterative.green.controllers.form.VeiculoAtualizarForm;
-import br.com.iterative.green.models.Corridas;
+import br.com.iterative.green.models.Aluguel;
+import br.com.iterative.green.models.Condutor;
 import br.com.iterative.green.models.Veiculos;
-import br.com.iterative.green.repository.CorridasRepository;
+import br.com.iterative.green.repository.AluguelRepository;
+import br.com.iterative.green.repository.CondutorRepository;
+import br.com.iterative.green.repository.FinanceiroRepository;
 import br.com.iterative.green.repository.VeiculosRepository;
 
 @RestController
 public class GreenController {
 	@Autowired VeiculosRepository veiculosRepository;
 	
-	@Autowired CorridasRepository corridasRepository;
+	@Autowired AluguelRepository corridasRepository;
+	
+	@Autowired FinanceiroRepository financeiroRepository;
+	
+	@Autowired CondutorRepository condutorRepository;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/veiculos", method = RequestMethod.GET)
@@ -40,15 +47,15 @@ public class GreenController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/corridas", method = RequestMethod.GET)
-	public List<CorridasDTO> listarCorridas(){
-		List<Corridas> corridas = corridasRepository.findAll();
+	@RequestMapping(value = "/aluguel", method = RequestMethod.GET)
+	public List<AluguelDTO> listarCorridas(){
+		List<Aluguel> corridas = corridasRepository.findAll();
 		
-		return CorridasDTO.converter(corridas);
+		return AluguelDTO.converter(corridas);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/alugar/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/aluguel/{id}", method = RequestMethod.GET)
 	public VeiculosDTO alugarVeiculo(@PathVariable Long id) {
 		Veiculos veiculo = veiculosRepository.getOne(id);
 		
@@ -56,22 +63,26 @@ public class GreenController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value ="/alugar", method = RequestMethod.POST)
-	public ResponseEntity<VeiculosDTO> cadastrar(@RequestBody CorridasForm form, UriComponentsBuilder uribuBuilder){
-		Corridas corrida = form.converter(veiculosRepository);
-		corridasRepository.save(corrida);
-
-		URI uri = uribuBuilder.path("/corridas/{id}").buildAndExpand(corrida.getId()).toUri();
-		return ResponseEntity.created(uri).body(new VeiculosDTO(corrida.getVeiculo()));
+	@RequestMapping(value ="/aluguel/{id}", method = RequestMethod.POST)
+	public ResponseEntity<VeiculosDTO> cadastrar(@RequestBody AluguelForm form, UriComponentsBuilder uribuBuilder,
+			@PathVariable Long id){
+		
+		criarCondutor(form);
+		
+		Aluguel aluguel = form.converter(id, veiculosRepository, condutorRepository,financeiroRepository, form.getEmailCondutor());
+		corridasRepository.save(aluguel);
+		
+		URI uri = uribuBuilder.path("/aluguel/{id}").buildAndExpand(aluguel.getId()).toUri();
+		return ResponseEntity.created(uri).body(new VeiculosDTO(aluguel.getVeiculo()));
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/corridas/{idCorrida}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/aluguel/{id}", method = RequestMethod.PUT)
 	@Transactional
-	public ResponseEntity<CorridasDTO> finalizar(@PathVariable Long idCorrida, @RequestBody CorridaAtualizarForm corridaForm){
-		Corridas corridaAtualizada = corridaForm.atualizar(idCorrida,corridasRepository);
+	public ResponseEntity<AluguelDTO> finalizar(@PathVariable Long id, @RequestBody AluguelAtualizarForm corridaForm){
+		Aluguel corridaAtualizada = corridaForm.atualizar(id,corridasRepository, financeiroRepository);
 		
-		return ResponseEntity.ok(new CorridasDTO(corridaAtualizada));
+		return ResponseEntity.ok(new AluguelDTO(corridaAtualizada));
 	}
 	
 	@CrossOrigin
@@ -82,6 +93,15 @@ public class GreenController {
 		
 		
 		return ResponseEntity.ok(new VeiculosDTO(veiculoAtualizado));
+	}
+	
+	public void criarCondutor(AluguelForm form) {
+	
+	if(condutorRepository.findByEmail(form.getEmailCondutor()) == null) {
+		Condutor condutor = new Condutor();	
+		condutor.setEmail(form.getEmailCondutor());
+		condutorRepository.save(condutor);	
+		}
 	}
 	
 }
