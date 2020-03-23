@@ -1,4 +1,4 @@
-# projeto-iterative
+# Green-Mobilidade
 Se tem a Yellow porque não a Green?
 
 Projeto para aluguel de veículos em Angular2+ consumindo API SpringBoot
@@ -15,6 +15,3 @@ da corrida, /financeiro que mostra o resumo financeiro de todos os veículos e /
 
 A aplicação está simples e consumindo todos os tipos de requisições(GET, PUT, POST, delete não desculpa) sei que precisa de muitas melhorias 
 mas foi a primeira aplicação que fiz em Angular e Spring Boot e foi a primeira vez que realizei essa integração.
-
-Quero agradecer a Iterative por me proporcionar este desafio, com certeza tive muitas dificuldades mas ganhei um conhecimento que nunca vou me esquecer
-e com certeza ficarei feliz em passar para outras pessoas.
